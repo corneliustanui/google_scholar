@@ -15,7 +15,7 @@ citations %>%
   geom_line() + 
   geom_point()+
   scale_x_continuous(breaks = unique(citations$year))+
-  scale_y_continuous(breaks = seq(from = 0, max(citations$cites), by = 20))+
+  scale_y_continuous(breaks = seq(from = 0, to = max(citations$cites), by = 20))+
   geom_text(label = citations$cites,
             nudge_x = 0.25, nudge_y = 0.1, 
             check_overlap = TRUE,

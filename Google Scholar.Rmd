@@ -1,6 +1,7 @@
 ---
-title: "Google Scholar"
+title: "Google Scholar Analytics"
 output: html_document
+author: Cornelius Tanui
 ---
 
 ```{r setup, include = FALSE}
@@ -13,11 +14,10 @@ knitr::opts_chunk$set(echo = TRUE,
 Libaries
 ```{r Libaries}
 library(tidyverse)
-library(lubridate)
 library(scholar)
 ```
 
-Get Sholar ID
+Get Scholar ID
 
 ```{r Get Data}
 vin <- get_scholar_id(last_name = "Were", 
@@ -28,9 +28,7 @@ vin <- get_scholar_id(last_name = "Were",
 Plot Citation History
 
 ```{r Plot}
-
-get_oldest_article(vin)
-
+# Get citations
 citations <- get_citation_history(vin)
 
 # Plot trend of citations 
@@ -39,7 +37,7 @@ citations %>%
   geom_line() + 
   geom_point()+
   scale_x_continuous(breaks = unique(citations$year))+
-  scale_y_continuous(breaks = seq(from = 0, max(citations$cites), by = 20))+
+  scale_y_continuous(breaks = seq(from = 0, to = max(citations$cites), by = 20))+
   geom_text(label = citations$cites,
             nudge_x = 0.25, nudge_y = 0.1, 
             check_overlap = TRUE,
@@ -53,3 +51,12 @@ citations %>%
         plot.title = element_text(hjust = 0.5),
         axis.line = element_line(colour = "black"))
 ```
+
+Co-authors
+
+```{r Co-authors}
+coauthors <- get_coauthors(vin)
+plot_coauthors(coauthors)
+```
+
+
