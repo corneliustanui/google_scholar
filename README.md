@@ -4,4 +4,4 @@ This is a summary of google scholar analitics using the package `scholar`
 
 LaTeX 
 
-$ y = x1 + x2 $
+$$ y = x1 + x2 $$ 
